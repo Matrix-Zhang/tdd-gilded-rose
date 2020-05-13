@@ -3,7 +3,11 @@ package cn.xpbootcamp.gildedrose;
 import java.time.LocalDate;
 import java.time.Period;
 
-public abstract class Commodity {
+interface CommodityQuantity {
+    public int calculateQuantityByDate(LocalDate date);
+}
+
+public abstract class Commodity implements CommodityQuantity {
     public int sellIn;
     public int quantity;
     public Boolean hasSellIn;
