@@ -57,10 +57,32 @@ public class CommodityTest {
         GeneralCommodity generalCommodity = new GeneralCommodity(sellIn, quantity);
         int quantityAtSellInDate = generalCommodity.calculateQuantityByDate(LocalDate.now().plusDays(sellIn));
 
-        System.out.println(quantityAtSellInDate);
-
         for (int i = 1; i <= 5; i++) {
             assertEquals(quantityAtSellInDate - i * 2, generalCommodity.calculateQuantityByDate(LocalDate.now().plusDays(sellIn + i)));
+        }
+    }
+
+    @Test
+    public void aged_dry_cheese_should_grown_quantity_1_every_day_before_the_sell_in_date () {
+        int sellIn = 30;
+        int quantity = 20;
+
+        AgedDryCheese agedDryCheese = new AgedDryCheese(sellIn, quantity);
+        for (int i = 0; i <= sellIn; i++) {
+            assertEquals(quantity + i, agedDryCheese.calculateQuantityByDate(LocalDate.now().plusDays(i)));
+        }
+    }
+
+    @Test
+    public void aged_dry_cheese_should_grown_quantity_2_every_day_after_the_sell_in_date () {
+        int sellIn = 10;
+        int quantity = 10;
+
+        AgedDryCheese agedDryCheese = new AgedDryCheese(sellIn, quantity);
+        int quantityAtSellInDate = agedDryCheese.calculateQuantityByDate(LocalDate.now().plusDays(sellIn));
+
+        for (int i = 0; i <= sellIn; i++) {
+            assertEquals(quantityAtSellInDate + i * 2, agedDryCheese.calculateQuantityByDate(LocalDate.now().plusDays(sellIn + i)));
         }
     }
 }
