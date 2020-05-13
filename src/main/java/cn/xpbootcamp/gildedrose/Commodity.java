@@ -41,7 +41,6 @@ public abstract class Commodity {
             reduce = Period.between(this.productionDate, date).getDays() * reduceEveryDayBeforeSellInDate();
         }
 
-
         return Math.min(50, Math.max(this.quantity - reduce, 0));
     }
 }
