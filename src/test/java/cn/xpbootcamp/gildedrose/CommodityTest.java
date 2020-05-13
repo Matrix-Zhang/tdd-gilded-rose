@@ -85,4 +85,12 @@ public class CommodityTest {
             assertEquals(quantityAtSellInDate + i * 2, agedDryCheese.calculateQuantityByDate(LocalDate.now().plusDays(sellIn + i)));
         }
     }
+
+    @Test
+    public void sulfuras_quantity_should_never_change_when_calculate_quantity() {
+        Sulfuras sulfuras = new Sulfuras(30);
+        for (int i =0; i< 100; i++) {
+           assertEquals(30, sulfuras.calculateQuantityByDate(LocalDate.now().plusDays(i)));
+        }
+    }
 }

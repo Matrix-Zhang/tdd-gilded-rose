@@ -2,7 +2,7 @@ package cn.xpbootcamp.gildedrose;
 
 public class GeneralCommodity extends Commodity {
     GeneralCommodity(int sellIn, int quantity) {
-        super(sellIn, quantity);
+        super(sellIn, quantity, true);
     }
 
     @Override

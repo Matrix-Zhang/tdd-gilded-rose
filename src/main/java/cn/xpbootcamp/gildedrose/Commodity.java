@@ -6,11 +6,12 @@ import java.time.Period;
 public abstract class Commodity {
     public int sellIn;
     public int quantity;
+    public Boolean hasSellIn;
     public LocalDate productionDate;
     public LocalDate sellInDate;
 
-    Commodity(int sellIn, int quantity) {
-        if (sellIn <= 0) {
+    Commodity(int sellIn, int quantity, Boolean hasSellIn) {
+        if (hasSellIn && sellIn <= 0) {
             throw new IllegalArgumentException("sellIn must bigger than 1.");
         }
 
@@ -20,6 +21,7 @@ public abstract class Commodity {
 
         this.sellIn = sellIn;
         this.quantity = quantity;
+        this.hasSellIn = hasSellIn;
         this.productionDate = LocalDate.now();
         this.sellInDate = this.productionDate.plusDays(sellIn);
     }
